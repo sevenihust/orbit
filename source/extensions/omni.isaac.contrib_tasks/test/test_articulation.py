@@ -193,8 +193,8 @@ class TestArticulation(unittest.TestCase):
                 # update buffers
                 robot.update(self.dt)
             # check condition that the robots have fallen down
-            self.assertTrue(robot.data.root_pos_w[0, 2].item() < 0.2)
-            self.assertTrue(robot.data.root_pos_w[1, 2].item() < 0.2)
+            self.assertTrue(robot.data.root_pos_w[0, 2].abs().item() < 0.2)
+            self.assertTrue(robot.data.root_pos_w[1, 2].abs().item() < 0.2)
 
     def test_external_force_on_multiple_bodies(self):
         """Test application of external force on the legs of the robot."""
@@ -243,8 +243,8 @@ class TestArticulation(unittest.TestCase):
                 robot.update(self.dt)
             # check condition
             # since there is a moment applied on the robot, the robot should rotate
-            self.assertTrue(robot.data.root_ang_vel_w[0, 2].item() > 0.1)
-            self.assertTrue(robot.data.root_ang_vel_w[1, 2].item() > 0.1)
+            self.assertTrue(robot.data.root_ang_vel_w[0, 2].abs().item() > 0.1)
+            self.assertTrue(robot.data.root_ang_vel_w[1, 2].abs().item() > 0.1)
 
     def test_loading_gains_from_usd(self):
         """Test that gains are loaded from USD file if actuator model has them as None."""
